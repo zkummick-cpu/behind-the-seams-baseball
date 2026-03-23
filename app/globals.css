@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F5F2ED;
+  --surface: #FFFFFF;
+  --card: #FFFFFF;
+  --border: rgba(0,0,0,0.09);
+  --red: #C8102E;
+  --red-dim: rgba(200,16,46,0.08);
+  --dark: #1A1818;
+  --muted: #8A8480;
+  --mid: #5A5652;
+  --nav-bg: #1A1818;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--dark);
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* TICKER */
+.ticker-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  background: var(--red); overflow: hidden; height: 2.2rem;
+  display: flex; align-items: center;
+}
+.ticker-track {
+  display: flex; align-items: center; white-space: nowrap;
+  animation: ticker 30s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #fff; padding: 0 2.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.ticker-dot {
+  width: 4px; height: 4px;
+  background: rgba(255,255,255,0.5); border-radius: 50%; flex-shrink: 0;
+}
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* NAV */
+nav {
+  position: fixed; top: 2.2rem; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: var(--nav-bg);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-logo { display: flex; flex-direction: column; line-height: 1; gap: 1px; text-decoration: none; }
+.nav-logo .top { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: 0.08em; color: #F2EDE4; }
+.nav-logo .sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.35em; color: var(--red); text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+.nav-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: #F2EDE4; }
+
+/* BUTTONS */
+.btn-primary {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #fff; background: var(--red); border: none;
+  padding: 0.65rem 1.6rem; cursor: pointer;
+  transition: opacity 0.2s; text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-ghost {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--mid); background: transparent;
+  border: 1px solid var(--border); padding: 0.65rem 1.6rem;
+  cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block;
+}
+.btn-ghost:hover { color: var(--dark); border-color: rgba(0,0,0,0.3); }
+.btn-dark {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #F2EDE4; background: var(--dark); border: none;
+  padding: 0.65rem 1.6rem; cursor: pointer;
+  transition: opacity 0.2s; text-decoration: none; display: inline-block;
+}
+.btn-dark:hover { opacity: 0.85; }
+
+/* PAGE WRAP */
+.page-wrap { padding-top: 5.2rem; }
+
+/* SECTION UTILS */
+section { padding: 4.5rem 3rem; }
+.section-tag {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem;
+  letter-spacing: 0.38em; text-transform: uppercase; color: var(--red);
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+}
+.section-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--red); }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  letter-spacing: 0.03em; line-height: 0.95; color: var(--dark); margin-bottom: 1.5rem;
+}
+.section-title em { color: var(--red); font-style: normal; }
+
+/* PROGRAM CARDS */
+.programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.program-card {
+  background: var(--surface); padding: 2.2rem;
+  display: flex; flex-direction: column; gap: 1.2rem;
+  position: relative; transition: background 0.2s;
+}
+.program-card:hover { background: #fafaf8; }
+.program-card.featured { border-top: 3px solid var(--red); }
+.program-badge {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  background: var(--red);
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: #fff; padding: 0.25rem 0.6rem;
+}
+.program-badge.outline { background: transparent; border: 1px solid var(--red); color: var(--red); }
+.program-icon {
+  width: 2.5rem; height: 2.5rem;
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+}
+.program-icon svg { width: 1.1rem; height: 1.1rem; stroke: var(--red); fill: none; stroke-width: 1.5; }
+.program-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 600; letter-spacing: 0.04em; color: var(--dark); line-height: 1.2; }
+.program-desc { font-size: 0.85rem; font-weight: 300; color: var(--mid); line-height: 1.65; flex: 1; }
+.program-price { display: flex; align-items: baseline; gap: 0.5rem; }
+.price-main { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--dark); letter-spacing: 0.04em; }
+.price-old { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; color: var(--muted); text-decoration: line-through; }
+.program-footer { display: flex; flex-direction: column; gap: 0.6rem; border-top: 1px solid var(--border); padding-top: 1.2rem; }
+.program-includes { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.program-btn {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dark); background: transparent; border: 1px solid var(--border);
+  padding: 0.75rem; cursor: pointer; transition: all 0.2s;
+  text-align: center; text-decoration: none; display: block; width: 100%;
+}
+.program-btn:hover, .program-card.featured .program-btn { background: var(--red); border-color: var(--red); color: #fff; }
+
+/* TESTIMONIALS */
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.testi-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+.testi-stars { display: flex; gap: 4px; }
+.star { width: 12px; height: 12px; background: var(--red); clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+.testi-quote { font-size: 0.95rem; font-weight: 300; color: var(--mid); line-height: 1.75; font-style: italic; }
+.testi-name { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark); }
+.testi-detail { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+
+/* CONTACT FORM */
+.lead-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+input[type="text"], input[type="email"], textarea {
+  width: 100%; background: var(--bg); border: 1px solid var(--border);
+  color: var(--dark); font-family: 'Barlow', sans-serif; font-size: 0.9rem;
+  padding: 0.9rem 1.1rem; outline: none; transition: border-color 0.2s;
+}
+input::placeholder, textarea::placeholder { color: var(--muted); }
+input:focus, textarea:focus { border-color: var(--red); }
+textarea { min-height: 7rem; resize: vertical; }
+.form-submit {
+  width: 100%; padding: 1rem; background: var(--red); border: none;
+  color: #fff; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.form-submit:hover { opacity: 0.85; }
+
+/* FOOTER */
+footer {
+  background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+.footer-logo .top { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.08em; color: #F2EDE4; }
+.footer-logo .sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; letter-spacing: 0.32em; color: var(--red); text-transform: uppercase; }
+.footer-copy { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: #F2EDE4; }
+
+/* DISCOUNT STRIP */
+.discount-strip {
+  background: var(--red-dim); border-top: 1px solid rgba(200,16,46,0.15);
+  border-bottom: 1px solid rgba(200,16,46,0.15);
+  padding: 1rem 3rem; display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.discount-strip p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dark); }
+.discount-strip span { color: var(--red); font-weight: 600; }
+
+/* CREDENTIALS */
+.credentials { display: flex; flex-direction: column; gap: 0.75rem; margin: 2rem 0; }
+.cred { display: flex; align-items: flex-start; gap: 0.75rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; letter-spacing: 0.08em; color: var(--mid); }
+.cred::before { content: ''; flex-shrink: 0; width: 5px; height: 5px; background: var(--red); margin-top: 0.35rem; transform: rotate(45deg); }
